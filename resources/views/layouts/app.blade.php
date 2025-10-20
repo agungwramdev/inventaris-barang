@@ -204,10 +204,18 @@
                             <i class="fas fa-cogs me-1"></i> Master Data
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('bagian.index') }}">Bagian</a></li>
-                            <li><a class="dropdown-item" href="{{ route('status-barang.index') }}">Status Barang</a></li>
-                            <li><a class="dropdown-item" href="{{ route('jenis-barang.index') }}">Jenis Barang</a></li>
-                            <li><a class="dropdown-item" href="{{ route('tipe-barang.index') }}">Tipe Barang</a></li>
+                            <li><a class="dropdown-item" href="{{ route('bagian.index') }}">
+                                <i class="fas fa-building me-2"></i>Bagian
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ route('status-barang.index') }}">
+                                <i class="fas fa-tags me-2"></i>Status Barang
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ route('jenis-barang.index') }}">
+                                <i class="fas fa-tags me-2"></i>Jenis Barang
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ route('tipe-barang.index') }}">
+                                <i class="fas fa-tags me-2"></i>Tipe Barang
+                            </a></li>
                         </ul>
                     </li>
                 </ul>

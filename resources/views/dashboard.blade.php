@@ -219,4 +219,93 @@
         </div>
     </div>
 </div>
+
+<!-- Master Data Quick Access -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-cogs me-2"></i>
+                    Master Data Management
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100 border-0 bg-light">
+                            <div class="card-body text-center">
+                                <div class="d-flex align-items-center justify-content-center mb-3">
+                                    <div class="bg-primary bg-opacity-10 rounded-circle p-3">
+                                        <i class="fas fa-building text-primary fs-4"></i>
+                                    </div>
+                                </div>
+                                <h6 class="fw-bold">Bagian</h6>
+                                <p class="text-muted small mb-3">Kelola bagian organisasi</p>
+                                <a href="{{ route('bagian.index') }}" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-eye me-1"></i>
+                                    Kelola
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100 border-0 bg-light">
+                            <div class="card-body text-center">
+                                <div class="d-flex align-items-center justify-content-center mb-3">
+                                    <div class="bg-success bg-opacity-10 rounded-circle p-3">
+                                        <i class="fas fa-tags text-success fs-4"></i>
+                                    </div>
+                                </div>
+                                <h6 class="fw-bold">Status Barang</h6>
+                                <p class="text-muted small mb-3">Kelola status barang</p>
+                                <a href="{{ route('status-barang.index') }}" class="btn btn-success btn-sm">
+                                    <i class="fas fa-eye me-1"></i>
+                                    Kelola
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100 border-0 bg-light">
+                            <div class="card-body text-center">
+                                <div class="d-flex align-items-center justify-content-center mb-3">
+                                    <div class="bg-warning bg-opacity-10 rounded-circle p-3">
+                                        <i class="fas fa-tags text-warning fs-4"></i>
+                                    </div>
+                                </div>
+                                <h6 class="fw-bold">Jenis Barang</h6>
+                                <p class="text-muted small mb-3">Kelola jenis barang</p>
+                                <a href="{{ route('jenis-barang.index') }}" class="btn btn-warning btn-sm">
+                                    <i class="fas fa-eye me-1"></i>
+                                    Kelola
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100 border-0 bg-light">
+                            <div class="card-body text-center">
+                                <div class="d-flex align-items-center justify-content-center mb-3">
+                                    <div class="bg-info bg-opacity-10 rounded-circle p-3">
+                                        <i class="fas fa-tags text-info fs-4"></i>
+                                    </div>
+                                </div>
+                                <h6 class="fw-bold">Tipe Barang</h6>
+                                <p class="text-muted small mb-3">Kelola tipe barang</p>
+                                <a href="{{ route('tipe-barang.index') }}" class="btn btn-info btn-sm">
+                                    <i class="fas fa-eye me-1"></i>
+                                    Kelola
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

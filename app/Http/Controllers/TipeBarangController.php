@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\TipeBarang;
+use App\Models\JenisBarang;
 
 class TipeBarangController extends Controller
 {
@@ -13,7 +15,8 @@ class TipeBarangController extends Controller
      */
     public function index()
     {
-        //
+        $tipe = TipeBarang::with(['jenisBarang'])->withCount('barang')->orderBy('nama_tipe')->paginate(10);
+        return view('tipe-barang.index', compact('tipe'));
     }
 
     /**
@@ -23,7 +26,8 @@ class TipeBarangController extends Controller
      */
     public function create()
     {
-        //
+        $jenis = JenisBarang::orderBy('nama_jenis')->get();
+        return view('tipe-barang.create', compact('jenis'));
     }
 
     /**
@@ -34,7 +38,14 @@ class TipeBarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_tipe' => 'required|string|max:100',
+            'id_jenis' => 'required|exists:jenis_barang,id_jenis',
+        ]);
+
+        TipeBarang::create($request->all());
+
+        return redirect()->route('tipe-barang.index')->with('success', 'Tipe barang berhasil ditambahkan');
     }
 
     /**
@@ -45,7 +56,8 @@ class TipeBarangController extends Controller
      */
     public function show($id)
     {
-        //
+        $tipe = TipeBarang::with(['jenisBarang', 'barang.bagian', 'barang.statusBarang'])->findOrFail($id);
+        return view('tipe-barang.show', compact('tipe'));
     }
 
     /**
@@ -56,7 +68,9 @@ class TipeBarangController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tipe = TipeBarang::findOrFail($id);
+        $jenis = JenisBarang::orderBy('nama_jenis')->get();
+        return view('tipe-barang.edit', compact('tipe', 'jenis'));
     }
 
     /**
@@ -68,7 +82,15 @@ class TipeBarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama_tipe' => 'required|string|max:100',
+            'id_jenis' => 'required|exists:jenis_barang,id_jenis',
+        ]);
+
+        $tipe = TipeBarang::findOrFail($id);
+        $tipe->update($request->all());
+
+        return redirect()->route('tipe-barang.index')->with('success', 'Tipe barang berhasil diperbarui');
     }
 
     /**
@@ -79,6 +101,15 @@ class TipeBarangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tipe = TipeBarang::findOrFail($id);
+        
+        // Cek apakah ada barang yang menggunakan tipe ini
+        if ($tipe->barang()->count() > 0) {
+            return redirect()->route('tipe-barang.index')->with('error', 'Tidak dapat menghapus tipe yang masih memiliki barang');
+        }
+        
+        $tipe->delete();
+
+        return redirect()->route('tipe-barang.index')->with('success', 'Tipe barang berhasil dihapus');
     }
 }
