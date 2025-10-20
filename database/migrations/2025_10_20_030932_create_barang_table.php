@@ -23,7 +23,7 @@ class CreateBarangTable extends Migration
             $table->unsignedBigInteger('id_tipe');
             $table->unsignedBigInteger('id_status');
             $table->date('tanggal_masuk');
-            $table->decimal('harga', 15, 2)->nullable();
+            $table->bigInteger('harga')->nullable();
             $table->string('lokasi', 100)->nullable();
             $table->text('keterangan')->nullable();
             $table->timestamps();

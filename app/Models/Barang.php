@@ -28,7 +28,7 @@ class Barang extends Model
 
     protected $casts = [
         'tanggal_masuk' => 'date',
-        'harga' => 'decimal:2'
+        'harga' => 'integer'
     ];
 
     // Relasi dengan Bagian
@@ -82,5 +82,14 @@ class Barang extends Model
         }
         
         return $kodeBagian . $kodeJenis . $tanggal . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+    }
+
+    // Accessor untuk format harga Rupiah
+    public function getHargaRupiahAttribute()
+    {
+        if ($this->harga) {
+            return 'Rp ' . number_format($this->harga, 0, ',', '.');
+        }
+        return '-';
     }
 }

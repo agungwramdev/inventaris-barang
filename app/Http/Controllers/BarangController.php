@@ -87,6 +87,21 @@ class BarangController extends Controller
             // Generate kode barang otomatis
             $kodeBarang = Barang::generateKodeBarang($request->id_bagian, $request->id_jenis);
             
+            // Format harga untuk disimpan sebagai integer (dalam rupiah)
+            $harga = null;
+            if ($request->harga) {
+                // Hapus semua karakter non-numeric kecuali titik dan koma
+                $hargaInput = preg_replace('/[^0-9.,]/', '', $request->harga);
+                
+                // Jika ada koma, ganti dengan titik untuk decimal
+                if (strpos($hargaInput, ',') !== false) {
+                    $hargaInput = str_replace(',', '.', $hargaInput);
+                }
+                
+                // Konversi ke integer (dalam rupiah)
+                $harga = (int) round((float) $hargaInput);
+            }
+            
             $barang = Barang::create([
                 'kode_barang' => $kodeBarang,
                 'nama_barang' => $request->nama_barang,
@@ -96,7 +111,7 @@ class BarangController extends Controller
                 'id_tipe' => $request->id_tipe,
                 'id_status' => $request->id_status,
                 'tanggal_masuk' => $request->tanggal_masuk,
-                'harga' => $request->harga,
+                'harga' => $harga,
                 'lokasi' => $request->lokasi,
                 'keterangan' => $request->keterangan,
             ]);
@@ -160,6 +175,21 @@ class BarangController extends Controller
 
         $barang = Barang::findOrFail($id);
         
+        // Format harga untuk disimpan sebagai integer (dalam rupiah)
+        $harga = null;
+        if ($request->harga) {
+            // Hapus semua karakter non-numeric kecuali titik dan koma
+            $hargaInput = preg_replace('/[^0-9.,]/', '', $request->harga);
+            
+            // Jika ada koma, ganti dengan titik untuk decimal
+            if (strpos($hargaInput, ',') !== false) {
+                $hargaInput = str_replace(',', '.', $hargaInput);
+            }
+            
+            // Konversi ke integer (dalam rupiah)
+            $harga = (int) round((float) $hargaInput);
+        }
+        
         $barang->update([
             'nama_barang' => $request->nama_barang,
             'deskripsi' => $request->deskripsi,
@@ -168,7 +198,7 @@ class BarangController extends Controller
             'id_tipe' => $request->id_tipe,
             'id_status' => $request->id_status,
             'tanggal_masuk' => $request->tanggal_masuk,
-            'harga' => $request->harga,
+            'harga' => $harga,
             'lokasi' => $request->lokasi,
             'keterangan' => $request->keterangan,
         ]);

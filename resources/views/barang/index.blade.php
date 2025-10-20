@@ -120,11 +120,7 @@
                                 </td>
                                 <td>{{ $item->tanggal_masuk->format('d/m/Y') }}</td>
                                 <td>
-                                    @if($item->harga)
-                                        Rp {{ number_format($item->harga, 0, ',', '.') }}
-                                    @else
-                                        <span class="text-muted">-</span>
-                                    @endif
+                                    {{ $item->harga_rupiah }}
                                 </td>
                                 <td>
                                     <div class="btn-group" role="group">

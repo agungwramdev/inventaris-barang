@@ -122,8 +122,10 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="harga" class="form-label">Harga (Rp)</label>
-                            <input type="number" class="form-control @error('harga') is-invalid @enderror" 
-                                   id="harga" name="harga" value="{{ old('harga') }}" min="0" step="0.01">
+                            <input type="text" class="form-control @error('harga') is-invalid @enderror" 
+                                   id="harga" name="harga" value="{{ old('harga') }}" 
+                                   placeholder="Contoh: 2500000 atau 2.500.000">
+                            <small class="text-muted">Masukkan angka tanpa Rp, contoh: 2500000</small>
                             @error('harga')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -194,6 +196,18 @@
                     <small class="text-muted">Contoh: B020251020001</small>
                 </div>
                 
+                <div class="alert alert-success">
+                    <i class="fas fa-money-bill-wave me-2"></i>
+                    <strong>Format Harga</strong><br>
+                    Harga akan disimpan sebagai integer dalam Rupiah.
+                    <ul class="mb-0 mt-2">
+                        <li>Input: 2500000 → Disimpan: 2500000</li>
+                        <li>Input: 2.500.000 → Disimpan: 2500000</li>
+                        <li>Input: 2,5 → Disimpan: 2</li>
+                    </ul>
+                    <small class="text-muted">Tampilan: Rp 2.500.000</small>
+                </div>
+                
                 <div class="alert alert-warning">
                     <i class="fas fa-exclamation-triangle me-2"></i>
                     <strong>Perhatian</strong><br>
@@ -230,9 +244,15 @@ $(document).ready(function() {
     // Format harga input
     $('#harga').on('input', function() {
         var value = $(this).val();
-        if (value && !isNaN(value)) {
-            $(this).val(parseFloat(value).toFixed(2));
+        // Hapus semua karakter non-numeric kecuali titik dan koma
+        value = value.replace(/[^0-9.,]/g, '');
+        
+        // Jika ada koma, ganti dengan titik untuk decimal
+        if (value.indexOf(',') !== -1) {
+            value = value.replace(',', '.');
         }
+        
+        $(this).val(value);
     });
 });
 </script>

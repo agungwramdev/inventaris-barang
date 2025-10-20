@@ -102,12 +102,8 @@
                     <div class="col-md-6 mb-3">
                         <label class="form-label fw-bold">Harga</label>
                         <div>
-                            @if($barang->harga)
-                                <i class="fas fa-money-bill-wave me-2 text-muted"></i>
-                                Rp {{ number_format($barang->harga, 0, ',', '.') }}
-                            @else
-                                <span class="text-muted">Tidak ada harga</span>
-                            @endif
+                            <i class="fas fa-money-bill-wave me-2 text-muted"></i>
+                            {{ $barang->harga_rupiah }}
                         </div>
                     </div>
                 </div>
