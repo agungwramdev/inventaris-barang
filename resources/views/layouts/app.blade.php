@@ -151,6 +151,15 @@
             border: none;
         }
 
+        /* Pagination Info */
+        .pagination-info {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
         .stats-card {
             background: linear-gradient(135deg, white 0%, #f8fafc 100%);
             border-left: 4px solid var(--primary-color);

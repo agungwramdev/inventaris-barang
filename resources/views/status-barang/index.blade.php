@@ -86,9 +86,14 @@
                 </table>
             </div>
             
+            <!-- Pagination Info -->
+            <div class="pagination-info">
+                Menampilkan {{ $status->firstItem() ?? 0 }} sampai {{ $status->lastItem() ?? 0 }} dari {{ $status->total() }} hasil
+            </div>
+            
             <!-- Pagination -->
-            <div class="d-flex justify-content-center mt-4">
-                {{ $status->links() }}
+            <div class="d-flex justify-content-center mt-3">
+                {{ $status->links('pagination::bootstrap-4') }}
             </div>
         @else
             <div class="text-center text-muted py-5">
