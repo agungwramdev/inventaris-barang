@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             StatusBarangSeeder::class,
             JenisBarangSeeder::class,
             TipeBarangSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

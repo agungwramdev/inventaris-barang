@@ -225,17 +225,37 @@
                             <li><a class="dropdown-item" href="{{ route('tipe-barang.index') }}">
                                 <i class="fas fa-tags me-2"></i>Tipe Barang
                             </a></li>
+                            @auth
+                                @if(auth()->user()->role === 'Super Admin')
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{{ route('users.index') }}">
+                                        <i class="fas fa-users me-2"></i>Users
+                                    </a></li>
+                                @endif
+                            @endauth
                         </ul>
                     </li>
                 </ul>
                 
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <span class="nav-link">
-                            <i class="fas fa-building me-1"></i>
-                            Biro Pengadaan Barang & Jasa
-                        </span>
-                    </li>
+                    @auth
+                        <li class="nav-item">
+                            <span class="nav-link">
+                                <i class="fas fa-user me-1"></i>
+                                {{ auth()->user()->name }} ({{ auth()->user()->role }})
+                            </span>
+                        </li>
+                        <li class="nav-item">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-light ms-2">Logout</button>
+                            </form>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="btn btn-sm btn-light" href="{{ route('login') }}">Login</a>
+                        </li>
+                    @endauth
                 </ul>
             </div>
         </div>
