@@ -16,19 +16,19 @@ class BagianSeeder extends Seeder
         $bagian = [
             [
                 'kode_bagian' => 'A',
-                'nama_bagian' => 'Bagian A - Administrasi Umum',
+                'nama_bagian' => 'Bagian A - Bagian Pengelolaan Pengadaan Barang dan Jasa',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'kode_bagian' => 'B',
-                'nama_bagian' => 'Bagian B - Pengadaan Barang dan Jasa',
+                'nama_bagian' => 'Bagian B - Bagian Pengelolaan Layanan Pengadaan Secara Elektronik',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'kode_bagian' => 'C',
-                'nama_bagian' => 'Bagian C - Keuangan dan Aset',
+                'nama_bagian' => 'Bagian C - Bagian Pembinaan dan Advokasi Pengadaan Barang dan Jasa',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
