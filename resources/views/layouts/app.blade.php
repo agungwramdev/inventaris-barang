@@ -246,9 +246,11 @@
                             </span>
                         </li>
                         <li class="nav-item">
-                            <form method="POST" action="{{ route('logout') }}">
+                            <form method="POST" action="{{ route('logout') }}" class="d-inline">
                                 @csrf
-                                <button type="submit" class="btn btn-sm btn-light ms-2">Logout</button>
+                                <button type="submit" class="btn btn-light btn-sm rounded-circle ms-2" title="Logout">
+                                    <i class="fas fa-right-from-bracket"></i>
+                                </button>
                             </form>
                         </li>
                     @else
