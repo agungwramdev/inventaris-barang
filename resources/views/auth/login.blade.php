@@ -108,12 +108,12 @@
             <form method="POST" action="{{ route('login.post') }}" autocomplete="off">
                 @csrf
                 <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" name="email" value="{{ old('email') }}" class="form-control" required>
+                    <label class="form-label">Email atau Username</label>
+                    <input type="text" name="login" value="{{ old('login') }}" class="form-control" placeholder="Masukkan email atau username" required>
                 </div>
                 <div class="mb-2">
                     <label class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" required>
+                    <input type="password" placeholder="*******" name="password" class="form-control" required>
                 </div>
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <div class="form-check">

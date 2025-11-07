@@ -122,10 +122,10 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="harga" class="form-label">Harga (Rp)</label>
-                            <input type="text" class="form-control @error('harga') is-invalid @enderror" 
-                                   id="harga" name="harga" value="{{ old('harga') }}" 
-                                   placeholder="Contoh: 2500000 atau 2.500.000">
-                            <small class="text-muted">Masukkan angka tanpa Rp, contoh: 2500000</small>
+                            <input type="text" class="form-control @error('harga') is-invalid @enderror"
+                                   id="harga" name="harga" value="{{ old('harga') }}"
+                                   placeholder="Masukkan harga">
+                            <small class="text-muted">Format otomatis dengan pemisah ribuan (Contoh: 2.500.000)</small>
                             @error('harga')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -241,18 +241,28 @@ $(document).ready(function() {
         }
     });
     
-    // Format harga input
-    $('#harga').on('input', function() {
+    // Format harga input dengan pemisah ribuan
+    $('#harga').on('input', function(e) {
         var value = $(this).val();
-        // Hapus semua karakter non-numeric kecuali titik dan koma
-        value = value.replace(/[^0-9.,]/g, '');
-        
-        // Jika ada koma, ganti dengan titik untuk decimal
-        if (value.indexOf(',') !== -1) {
-            value = value.replace(',', '.');
+
+        // Hapus semua karakter non-numeric
+        value = value.replace(/[^0-9]/g, '');
+
+        // Format dengan pemisah ribuan (titik)
+        if (value) {
+            value = parseInt(value, 10).toLocaleString('id-ID');
         }
-        
+
         $(this).val(value);
+    });
+
+    // Hapus format sebelum submit agar tersimpan sebagai angka murni
+    $('form').on('submit', function() {
+        var hargaInput = $('#harga');
+        var value = hargaInput.val();
+        // Hapus titik pemisah ribuan
+        value = value.replace(/\./g, '');
+        hargaInput.val(value);
     });
 });
 </script>
